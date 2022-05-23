@@ -1,6 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import 'header';
+@import 'toppage';
 
 
 body {
@@ -36,10 +36,3 @@ a:hover {
 
 
 
-footer {
-  background-color: #f78686;
-}
-
-.footer-text {
-  color: #636262;
-}

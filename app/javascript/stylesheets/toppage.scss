@@ -1,0 +1,31 @@
+//header
+.navbar {
+  background-color: #f9fcfb;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+//footer
+footer {
+  background-color: #f78686;
+}
+
+.footer-text {
+  color: #636262;
+}
+
+//規約
+
+.wrap-terms {
+  border-radius: 15px;
+  margin: 20px 0;
+  background: #f9fcfb;
+  border: 5px solid #fad4d4e0;
+  font-size: 1rem;
+
+  @media screen and (max-width: 767px) {
+    font-size: 0.5rem;
+  }
+}
