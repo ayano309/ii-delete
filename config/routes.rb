@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  get 'home/top'
+  root 'home#top'
+  get 'terms', to: 'home#terms'
+  get 'privacy', to: 'home#privacy'
+  get 'shop', to: 'home#shop'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
