@@ -7,6 +7,10 @@ body {
   background-color: #f9fcfb;
   padding-top: 76px;
   font-family: Lato, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  min-height:100vh ;
+position: relative;
+padding-bottom:50px;
+box-sizing:border-box;
 }
 
 .img-fluid {
@@ -27,4 +31,15 @@ a:hover {
   font-size: 14px;
   margin-top: 8px;
   border-color: #ea352d;
+}
+
+
+
+
+footer {
+  background-color: #f78686;
+}
+
+.footer-text {
+  color: #636262;
 }
