@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
   end
 
-  def shop
+  def about
 
   end
 
