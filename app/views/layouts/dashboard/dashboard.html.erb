@@ -6,23 +6,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  
-    <% if flash.present? %>
-      <div class="flash">
-        <% flash.each do |key, value| %>
-          <div class="<%= key %>">
-            <%= value %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <%= yield %>
-  
-  </body>
-
+  <%= render 'layouts/dashboard/header' %>
+  <div class="row">
+    <div class="col-md-4 mt-3">
+      <%= render partial: 'layouts/dashboard/sidebar' %>
+    </div>
+    <div class="col">
+      <main class="py-4 mb-5">
+        <%= yield %>
+      </main>
+    </div>
+  </div>
+</body>
 </html>
