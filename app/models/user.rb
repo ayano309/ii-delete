@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { in: 2..20 }
   validates :email, presence: true
   validates :phone, presence: true
+  has_many :reservations
 
   # postgresの時は::textを入れる？？
   scope :search_information, -> (keyword) {
