@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       delete "mypage/delete", :to => "users#destroy"
     end
   end
+  resources :reservations, only: [:index, :create]
 
   #namespace
   #URLは指定のパスにしたい
