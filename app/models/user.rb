@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :phone, presence: true
 
-  # postgresの時は::textを入れる
+  # postgresの時は::textを入れる？？
   scope :search_information, -> (keyword) {
     where('name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR phone::text LIKE :keyword', keyword: "%#{keyword}%")
   }
@@ -21,6 +21,12 @@ class User < ApplicationRecord
     result = update(params, *options)
     clean_up_passwords
     result
+  end
+
+  #User退会機能
+  #与えられた引数によってtrueまたはfalseを返す
+  def switch_flg(withdrawal)
+    withdrawal ? false : true
   end
 
 end

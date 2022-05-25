@@ -13,5 +13,10 @@ class Dashboard::UsersController < ApplicationController
   end
   
   def destroy
+    user = User.find(params[:id])
+    #userの退会フラグを渡す
+    deleted_flg = User.switch_flg(user.deleted_flg)
+    user.update(deleted_flg: deleted_flg)
+    redirect_to dashboard_users_path
   end
 end
