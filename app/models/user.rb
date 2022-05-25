@@ -8,6 +8,11 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :phone, presence: true
 
+  # postgresの時は::textを入れる
+  scope :search_information, -> (keyword) {
+    where('name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR phone::text LIKE :keyword', keyword: "%#{keyword}%")
+  }
+
   def update_password(params, *options)
     if params[:password].blank?
       params.delete(:password)
