@@ -5,10 +5,10 @@ class Dashboard::UsersController < ApplicationController
   def index
     if params[:keyword].present?
       @keyword = params[:keyword].strip
-      @users = User.search_information(@keyword)
+      @users = User.search_information(@keyword).page(params[:page])
     else
       @keyword = ""
-      @users = User.all.order(created_at: :desc)
+      @users = User.all.order(created_at: :desc).page(params[:page])
     end
   end
   

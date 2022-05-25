@@ -24,6 +24,12 @@ class UsersController < ApplicationController
   def edit_password
 
   end
+  
+  def destroy
+    @user.deleted_flg = User.switch_flg(@user.deleted_flg)
+    @user.update(deleted_flg: @user.deleted_flg)
+    redirect_to mypage_users_url
+  end
 
   private
 
