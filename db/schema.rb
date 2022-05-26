@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 2022_05_25_085132) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "capacities", force: :cascade do |t|
-    t.date "start_time", null: false
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "content", null: false
     t.integer "remaining_item", default: 100, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -38,12 +39,13 @@ ActiveRecord::Schema.define(version: 2022_05_25_085132) do
   create_table "reservations", force: :cascade do |t|
     t.integer "number_of_items", null: false
     t.integer "visiting_time", null: false
+    t.date "start_time", null: false
     t.integer "reservation_status", default: 0, null: false
     t.bigint "user_id"
-    t.bigint "capacity_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["capacity_id"], name: "index_reservations_on_capacity_id"
+    t.index ["item_id"], name: "index_reservations_on_item_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -62,6 +64,6 @@ ActiveRecord::Schema.define(version: 2022_05_25_085132) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reservations", "capacities"
+  add_foreign_key "reservations", "items"
   add_foreign_key "reservations", "users"
 end

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { in: 2..20 }
   validates :email, presence: true
@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :reservations
 
   # postgresの時は::textを入れる？？
-  scope :search_information, -> (keyword) {
+  scope :search_information, lambda { |keyword|
     where('name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR phone::text LIKE :keyword', keyword: "%#{keyword}%")
   }
 
@@ -24,10 +24,9 @@ class User < ApplicationRecord
     result
   end
 
-  #User退会機能
-  #与えられた引数によってtrueまたはfalseを返す
+  # User退会機能
+  # 与えられた引数によってtrueまたはfalseを返す
   def switch_flg(withdrawal)
     withdrawal ? false : true
   end
-
 end

@@ -1,0 +1,60 @@
+<%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user&.id %>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :name %>
+    </div>
+    <div class="mb-3">
+      <%= f.text_field :name, value: current_user&.name, class: "text" ,required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :email %>
+    </div>
+    <div class="mb-3">
+      <%= f.email_field :email, value: current_user&.email, class: "text", required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :phone %>
+    </div>
+    <div class="mb-3">
+      <%= f.telephone_field :phone, value: current_user&.phone, class: "text", placeholder: "ハイフン(-)なし", required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :start_time %>
+    </div>
+    <div class="mb-3">
+      <%= f.date_field :capacity_id, class: "text", required: true, min: Date.tomorrow, max: Date.today.since(1.month) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :visiting_time %>
+    </div>
+    <div class="mb-3">
+      <%= f.select :visiting_time, Reservation.visiting_times_i18n.invert, {include_blank: "予約希望時間を選択してください"}, {class: "text", required: true} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-left mb-1">
+      <%= f.label :number_of_items %>
+    </div>
+    <div class="mb-3">
+      <%= f.select :number_of_items,[1,2,3,4,5,6,7,8,9,10], {include_blank: "個数を選択して下さい"}, {class: "text", required: true} %>
+    </div>
+  </div>
+  <div class="text-left mb-3">
+    <small>*12個以上のご予約のお客様はお電話（012345678）にてお問い合わせください。<br>
+    お電話受付時間は14:00 - 15:00の間です。<br>
+    定休日は水曜日、祝日です。<br>
+    </small><br>
+  </div>
+  <div class="actions text-center mb-3">
+    <%= f.submit "規約に同意して次へ", class: "btn btn-log w-100" %>
+  </div>
+<% end %>
