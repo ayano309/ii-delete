@@ -42,6 +42,6 @@ class Reservation < ApplicationRecord
   end
 
   def start_time_not_saturday
-    errors.add(:start_time, 'は定休日(土曜日)以外を選択してください') if capacity.start_time.saturday？
+    errors.add(:start_time, 'は定休日(土曜日)以外を選択してください') if capacity.start_time.saturday?
   end
 end

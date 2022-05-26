@@ -49,5 +49,6 @@ Rails.application.routes.draw do
   # ファイル構成も指定のパスにしたい
   namespace :dashboard do
     resources :users, only: %i[index destroy]
+    resources :reservations
   end
 end
