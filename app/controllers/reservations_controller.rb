@@ -2,7 +2,6 @@ class ReservationsController < ApplicationController
   def index
     @reservation = Reservation.new
   end
-  
 
   def create
     Reservation.transaction do
@@ -15,7 +14,7 @@ class ReservationsController < ApplicationController
       redirect_to root_path, success: '予約が完了しました。'
     end
   rescue StandardError
-    redirect_to new_reservation_path, danger: '予約ができませんでした。x'
+    redirect_to reservations_path, danger: '予約ができませんでした。x'
   end
 
   private

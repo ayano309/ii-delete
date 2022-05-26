@@ -16,13 +16,12 @@ class Reservation < ApplicationRecord
     cancel: 2
   }
 
-
   validates :name, presence: true
   validates :email, presence: true
   validates :phone, presence: true
   validates :number_of_items, presence: true
   validates :visiting_time, presence: true
-  validates :reservations_status, presence: true
+  validates :reservation_status, presence: true
   validates :capacity_id, presence: true
 
   validate :date_before_today

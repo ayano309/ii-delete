@@ -4,50 +4,50 @@ Rails.application.routes.draw do
   get 'privacy', to: 'home#privacy'
   get 'about', to: 'home#about'
 
-  devise_for :admins, :controllers => {
-    :sessions => 'admins/sessions'
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
   }
 
   devise_scope :admin do
-    get "dashboard", :to => "dashboard#index"
-    get "dashboard/login", :to => "admins/sessions#new"
-    post "dashboard/login", :to => "admins/sessions#create"
-    delete "dashboard/logout", :to => "admins/sessions#destroy"
+    get 'dashboard', to: 'dashboard#index'
+    get 'dashboard/login', to: 'admins/sessions#new'
+    post 'dashboard/login', to: 'admins/sessions#create'
+    delete 'dashboard/logout', to: 'admins/sessions#destroy'
   end
-  
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions',
-    :passwords => 'users/passwords',
-    :confirmations => 'users/confirmations',
-    :unlocks => 'users/unlocks'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    confirmations: 'users/confirmations',
+    unlocks: 'users/unlocks'
   }
 
   devise_scope :user do
-    get "signup", :to => "users/registrations#new"
-    get "login", :to => "users/sessions#new"
-    delete "logout", :to => "users/sessions#destroy"
+    get 'signup', to: 'users/registrations#new'
+    get 'login', to: 'users/sessions#new'
+    delete 'logout', to: 'users/sessions#destroy'
   end
 
-  #memberとcollectionの違いは?
-  #routingにidが付くか付かないかの違い
-  #:idでurlを識別する必要がない場合はcollectionを使う
+  # memberとcollectionの違いは?
+  # routingにidが付くか付かないかの違い
+  # :idでurlを識別する必要がない場合はcollectionを使う
   resource :users, only: [:show] do
     collection do
-      #マイページ
-      get "mypage", :to => "users#mypage"
-      #パスワード
-      get "mypage/edit_password", :to =>"users#edit_password"
-      put "mypage/password", :to => "users#update_password"
-      delete "mypage/delete", :to => "users#destroy"
+      # マイページ
+      get 'mypage', to: 'users#mypage'
+      # パスワード
+      get 'mypage/edit_password', to: 'users#edit_password'
+      put 'mypage/password', to: 'users#update_password'
+      delete 'mypage/delete', to: 'users#destroy'
     end
   end
-  resources :reservations, only: [:index, :create]
+  resources :reservations, only: %i[index create]
 
-  #namespace
-  #URLは指定のパスにしたい
-  #ファイル構成も指定のパスにしたい
+  # namespace
+  # URLは指定のパスにしたい
+  # ファイル構成も指定のパスにしたい
   namespace :dashboard do
-    resources :users, only: [:index, :destroy]
+    resources :users, only: %i[index destroy]
   end
 end
