@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       delete 'mypage/delete', to: 'users#destroy'
     end
   end
+  resources :items, only: %i[index]
   resources :reservations, only: %i[index create]
 
   # namespace
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
   # ファイル構成も指定のパスにしたい
   namespace :dashboard do
     resources :users, only: %i[index destroy]
+    resources :items, except: [:show]
     resources :reservations
   end
 end
