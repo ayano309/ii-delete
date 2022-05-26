@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       delete 'mypage/delete', to: 'users#destroy'
     end
   end
+  resources :items, only: %i[index]
   resources :reservations, only: %i[index create]
 
   # namespace
